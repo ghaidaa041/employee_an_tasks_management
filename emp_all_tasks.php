@@ -67,85 +67,61 @@ rel="stylesheet">
                 echo $row1[0];
                 
                 ?></h2>
-            <div class="continar2">
-            <div class="row row-cols-1 row-cols-md-3 g-2">
-  
-  <div class="col">
-    <div class="card">
-      <img src="./image/tasks.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">إجمالي المهام المسندة اليك</h5>
-        <?php 
-        
-        $host ='localhost';
-        $user = 'root';
-        $pass ='';
-        $db = 'project1';
-        $contect = mysqli_connect($host,$user,$pass,$db);
-        
-        
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' ");
-        
-        while ($row = mysqli_fetch_assoc($reslt)) {
-            echo "<h2>".$row['count']."</h2>";
-        
-        }?>
-    
-        <a href="./emp_all_tasks.php" class="btn btn-info">قائمة المهام</a>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col">
-    <div class="card">
-      <img src="./image/done.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">مهام منتهيه</h5>
-        <?php 
-        
-        $host ='localhost';
-        $user = 'root';
-        $pass ='';
-        $db = 'project1';
-        $contect = mysqli_connect($host,$user,$pass,$db);
-        
-        
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' and state ='مكتمله'");
-        
-        while ($row = mysqli_fetch_assoc($reslt)) {
-            echo "<h2>".$row['count']."</h2>";
-        }
-                ?>
-        <a href="./emp_done_tasks.php" class="btn btn-info">قائمة مهامك المنتهيه </a>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="./image/working.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">مهام تعمل عليها</h5>
-        <?php 
-        
-        $host ='localhost';
-        $user = 'root';
-        $pass ='';
-        $db = 'project1';
-        $contect = mysqli_connect($host,$user,$pass,$db);
-        
-        
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' and state ='جاري العمل عليها'");
-        
-        while ($row = mysqli_fetch_assoc($reslt)) {
-            echo "<h2>".$row['count']."</h2>";
-        }
-                ?>
-        <a href="./emp_working_tasks.php" class="btn btn-info">قائمة المهام التي تعمل عليها </a>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="continar">
+                <table class="table">
+            <thead>
+            <tr>
+      <th scope="col">#</th>
+      <th scope="col">عنوان المهمه</th>
+      <th scope="col">مسنده الى</th>
+      <th scope="col">التاريخ الأنتهاء</th>
+      <th scope="col">الحاله</th>
+      <th scope="col">تحديث</th>
+    </tr>
+  </thead>
+  <tbody>
+      <?php 
+       $host ='localhost';
+       $user = 'root';
+       $pass ='';
+       $db = 'project1';
+       $contect = mysqli_connect($host,$user,$pass,$db);
 
+
+       $emp_user_name = $_SESSION['username'];
+
+       $emp = mysqli_query($contect,"select emp_name from `employee` where emp_user_name = '$emp_user_name'");
+
+       $row1 = mysqli_fetch_array($emp);
+       
+       $reslt = mysqli_query($contect,"select * from `tasks` where goes_to ='$row1[0]'");
+
+       $i=1;
+       while ($row = mysqli_fetch_array($reslt)) {
+           echo "<tr>";
+           echo "<th>".$i."</th>";
+           echo "<th>".$row['task_title']."</th>";
+           echo "<th>".$row['goes_to']."</th>";
+           echo "<th>".$row['time']."</th>";
+           echo "<th>".$row['state']."</th>";
+
+
+           echo "<th>";
+           echo " <form  action='edit_task.php'  method='POST'>";
+           ?>
+           <input type='hidden' name='edit_id' value = <?php echo $row['id']?> ><br>
+           <?php
+           echo "<button name ='edit_btn' type='submit' class='btn btn-info'>تعديل</button>";
+           echo "</form>";
+           echo "</th>";
+
+           
+           echo "</tr>";
+           $i++;
+       };
+      ?>
+  </tbody>
+</table>
                 </div>
            
               

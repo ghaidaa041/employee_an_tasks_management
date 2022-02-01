@@ -155,7 +155,7 @@ select {
 }
 aside {
   /* background: linear-gradient(to right, rgb(128, 128, 128), rgb(80, 80, 80)); */
-  background-color: rgb(44, 44, 44);
+  background-color: rgb(24, 24, 24);
   float: right;
   width: 25%;
   height: 100vh;

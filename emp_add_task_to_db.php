@@ -29,8 +29,18 @@ if (isset($_POST['add-task'])) {
   mysqli_query($contect,$sql2);
   mysqli_query($contect,$sql3);
 
+    
+    // $alert = "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'> 
+    // swal('Good job!', 'You clicked the button!', 'success');
+    // </script>";
+    // echo "<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'> ";
+    // echo " swal('Good job!', 'You clicked the button!', 'success')";
+    // echo "</script>";
 
-  header("location: ./all_tasks.php");
+
+    // echo $alert;
+
+  header("location: ./emp_history.php");
 }
 
 ?>

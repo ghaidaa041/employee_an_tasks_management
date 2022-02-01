@@ -27,6 +27,8 @@ if(isset($_POST['update-task'])){
     $qury_run = mysqli_query($contect,$qury);
     $qury_run = mysqli_query($contect,$qury2);
 
+    header("location:./all_tasks.php");
+
 
  }
 

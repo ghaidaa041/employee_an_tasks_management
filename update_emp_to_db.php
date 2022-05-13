@@ -7,6 +7,7 @@ $pass ='';
 $db = 'project1';
 $contect = mysqli_connect($host,$user,$pass,$db);
 
+
 $id = $_POST['edit_id'];
 $edit_emp_name=$_POST['edit_emp_name'];
 $edit_emp_user_name=$_POST['edit_emp_user_name'];

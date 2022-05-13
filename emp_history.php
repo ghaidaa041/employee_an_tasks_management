@@ -48,6 +48,7 @@ rel="stylesheet">
             </aside>
 
             <main>
+            <div class="overflow-auto">
                 <div class="continar">
                 <table class="table">
             <thead>
@@ -63,11 +64,13 @@ rel="stylesheet">
   </thead>
   <tbody>
       <?php 
-       $host ='localhost';
-       $user = 'root';
-       $pass ='';
-       $db = 'project1';
-       $contect = mysqli_connect($host,$user,$pass,$db);
+      $host ='localhost';
+      $user = 'root';
+      $pass ='';
+      $db = 'project1';
+      $contect = mysqli_connect($host,$user,$pass,$db);
+      
+      
        $reslt = mysqli_query($contect,"select * from `tasks`");
 
        $i=1;
@@ -114,6 +117,7 @@ rel="stylesheet">
       ?>
   </tbody>
 </table>
+                </div>
                 </div>
             </main>
     </div>

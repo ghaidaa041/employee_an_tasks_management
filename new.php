@@ -71,6 +71,7 @@ rel="stylesheet">
        $pass ='';
        $db = 'project1';
        $contect = mysqli_connect($host,$user,$pass,$db);
+       
        $reslt = mysqli_query($contect,"select * from `tasks`");
 
        $i=1;

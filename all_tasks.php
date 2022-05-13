@@ -68,12 +68,16 @@ rel="stylesheet">
   </thead>
   <tbody>
       <?php 
-       $host ='localhost';
-       $user = 'root';
-       $pass ='';
-       $db = 'project1';
-       $contect = mysqli_connect($host,$user,$pass,$db);
-       $reslt = mysqli_query($contect,"select * from `tasks`");
+      $host ='localhost';
+      $user = 'root';
+      $pass ='';
+      $db = 'project1';
+      $contect = mysqli_connect($host,$user,$pass,$db);
+      
+      $admin = $_SESSION['username'];
+
+
+      $reslt = mysqli_query($contect,"select * from `tasks` where admin = '$admin'");
 
        $i=1;
        while ($row = mysqli_fetch_array($reslt)) {

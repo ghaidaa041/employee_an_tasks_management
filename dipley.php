@@ -54,11 +54,12 @@ rel="stylesheet">
             <main>
             <br>
                 <h2>مرحبا بك <?php
-                 $host ='localhost';
-                 $user = 'root';
-                 $pass ='';
-                 $db = 'project1';
-                 $contect = mysqli_connect($host,$user,$pass,$db);
+                $host ='localhost';
+                $user = 'root';
+                $pass ='';
+                $db = 'project1';
+                $contect = mysqli_connect($host,$user,$pass,$db);
+                
           
                 $emp_user_name = $_SESSION['username'];
                  $emp = mysqli_query($contect,"select admin_name from `admin` where user_name = '$emp_user_name'");
@@ -84,7 +85,7 @@ rel="stylesheet">
         $contect = mysqli_connect($host,$user,$pass,$db);
         
         
-        $reslt = mysqli_query($contect,"select count(*) as count from `employee`");
+        $reslt = mysqli_query($contect,"select count(*) as count from `employee` where admin = '$emp_user_name'");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";
@@ -108,8 +109,9 @@ rel="stylesheet">
         $db = 'project1';
         $contect = mysqli_connect($host,$user,$pass,$db);
         
+        $admin = $_SESSION['username'];  
         
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks`");
+        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where admin = '$admin' ");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";
@@ -135,7 +137,7 @@ rel="stylesheet">
         $contect = mysqli_connect($host,$user,$pass,$db);
         
         
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='مكتمله'");
+        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='مكتمله' and admin = '$admin'");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";
@@ -159,7 +161,7 @@ rel="stylesheet">
         $contect = mysqli_connect($host,$user,$pass,$db);
         
         
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='جاري العمل عليها'");
+        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='جاري العمل عليها' and admin = '$admin'");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";

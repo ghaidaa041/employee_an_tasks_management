@@ -7,6 +7,7 @@ $pass ='';
 $db = 'project1';
 $contect = mysqli_connect($host,$user,$pass,$db);
 
+
 $id = $_POST['edit_id'];
 $task_title=$_POST['edit_task_title'];
 $goes_to=$_POST['edit_goes_to'];
@@ -14,6 +15,14 @@ $time=$_POST['edit_time'];
 $state = $_POST['edit_state'];
 
 
+$user_name = $_SESSION['username'];
+
+
+$admin = mysqli_query($contect,"select * from `admin` where user_name = '$user_name'");
+$adm =mysqli_num_rows($admin);
+
+$employee = mysqli_query($contect,"select * from `employee` where emp_user_name = '$user_name'");
+$emp =mysqli_num_rows($employee);
 
 
 if(isset($_POST['update-task'])){
@@ -27,8 +36,13 @@ if(isset($_POST['update-task'])){
     $qury_run = mysqli_query($contect,$qury);
     $qury_run = mysqli_query($contect,$qury2);
 
-    header("location:./all_tasks.php");
 
+    
+if ($adm == 1) {
+    header("location:./all_tasks.php");
+}else {
+    header("location:./emp_all_tasks.php");
+}
 
  }
 

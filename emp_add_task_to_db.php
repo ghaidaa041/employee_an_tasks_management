@@ -8,6 +8,7 @@ $db = 'project1';
 $contect = mysqli_connect($host,$user,$pass,$db);
 
 
+
 $task_title=$_POST['task_title'];
 $goes_to=$_POST['goes_to'];
 $time=$_POST['time'];
@@ -40,7 +41,7 @@ if (isset($_POST['add-task'])) {
 
     // echo $alert;
 
-  header("location: ./emp_history.php");
+  header("location:./emp_all_tasks.php");
 }
 
 ?>

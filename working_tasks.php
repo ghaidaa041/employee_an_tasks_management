@@ -66,13 +66,14 @@ rel="stylesheet">
   </thead>
   <tbody>
       <?php 
-       $host ='localhost';
-       $user = 'root';
-       $pass ='';
-       $db = 'project1';
-       $contect = mysqli_connect($host,$user,$pass,$db);
+      $host ='localhost';
+      $user = 'root';
+      $pass ='';
+      $db = 'project1';
+      $contect = mysqli_connect($host,$user,$pass,$db);
+      
 
-       $reslt = mysqli_query($contect,"select * from `tasks` where state ='جاري العمل عليها'");
+       $reslt = mysqli_query($contect,"select * from `tasks` where state ='جاري العمل عليها' and admin = '$admin'");
        $i=1;
        while ($row = mysqli_fetch_array($reslt)) {
            echo "<tr>";

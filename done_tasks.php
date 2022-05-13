@@ -61,18 +61,19 @@ rel="stylesheet">
       <th scope="col">مسنده الى</th>
       <th scope="col">التاريخ الأنتهاء</th>
       <th scope="col">الحاله</th>
-      <th scope="col">تحديث</th>
     </tr>
   </thead>
   <tbody>
       <?php 
-       $host ='localhost';
-       $user = 'root';
-       $pass ='';
-       $db = 'project1';
-       $contect = mysqli_connect($host,$user,$pass,$db);
+     $host ='localhost';
+     $user = 'root';
+     $pass ='';
+     $db = 'project1';
+     $contect = mysqli_connect($host,$user,$pass,$db);
+     
+     $admin = $_SESSION['username'];  
 
-       $reslt = mysqli_query($contect,"select * from `tasks` where state ='مكتمله'");
+       $reslt = mysqli_query($contect,"select * from `tasks` where state ='مكتمله' and admin = '$admin'");
        $i=1;
        while ($row = mysqli_fetch_array($reslt)) {
            echo "<tr>";
@@ -81,17 +82,6 @@ rel="stylesheet">
            echo "<th>".$row['goes_to']."</th>";
            echo "<th>".$row['time']."</th>";
            echo "<th>".$row['state']."</th>";
-
-           echo "<th>";
-           echo " <form  action='edit_task.php'  method='POST'>";
-           ?>
-           <input type='hidden' name='edit_id' value = <?php echo $row['id']?> ><br>
-           <?php
-           echo "<button name ='edit_btn' type='submit' class='btn btn-info'>تعديل</button>";
-           echo "</form>";
-           echo "</th>";
-
-
            echo "</tr>";
            $i++;
        };

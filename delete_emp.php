@@ -11,6 +11,7 @@ $contect = mysqli_connect($host,$user,$pass,$db);
 
 
 
+
 $id = $_POST['del_id'];
 
 if(isset($_POST['del_btn'])){

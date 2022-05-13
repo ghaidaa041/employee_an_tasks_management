@@ -8,23 +8,28 @@ $db = 'project1';
 $contect = mysqli_connect($host,$user,$pass,$db);
 
 $id = $_POST['edit_id'];
-$edit_emp_name=$_POST['edit_emp_name'];
-$edit_emp_user_name=$_POST['edit_emp_user_name'];
-$edit_emp_password=$_POST['edit_emp_password'];
+$task_title=$_POST['edit_task_title'];
+$goes_to=$_POST['edit_goes_to'];
+$time=$_POST['edit_time'];
+$state = $_POST['edit_state'];
 
 
 
 
-if(isset($_POST['update-emp'])){
+if(isset($_POST['update-task'])){
 
-    $qury = "UPDATE `employee` SET `emp_name`='$edit_emp_name',`emp_user_name`='$edit_emp_user_name',`emp_password`='$edit_emp_password' WHERE `id`='$id'";
+    $qury = "UPDATE `tasks` SET  `task_title`='$task_title',`goes_to`=' $goes_to',`time`='$time',`state`='$state' WHERE id ='$id'";
     
-   
-    $qury_run = mysqli_query($contect,$qury);
+    $qury2 = "INSERT INTO `history_task`(`task_title`, `edit_goes_to`, `time`, `state`)
+     VALUES ('$task_title','$goes_to','$time','$state')";
 
-    if ($qury_run) {
-        header("location:./emp_history.php");
-    }
+
+    $qury_run = mysqli_query($contect,$qury);
+    $qury_run = mysqli_query($contect,$qury2);
+
+    header("location:./emp_all_tasks.php");
+
+
  }
 
 ?>

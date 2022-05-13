@@ -67,7 +67,7 @@ rel="stylesheet">
             
             <main>
                 <div class="continar">
-                <form action="./emp_update_task_to_db.php" method='POST'>
+                <form action="./update_task_to_db.php" method='POST'>
 
                 <?php
 
@@ -78,23 +78,24 @@ rel="stylesheet">
 
                     $qury_run =mysqli_query($contect,$qury);
 
-                    foreach($qury_run as $row){
+                    foreach($qury_run as $task){
 
                 ?>
             <br>
-            <input type="hidden" name="edit_id" value = "<?php echo $row['id']?>">
+            <input type="hidden" name="edit_id" value = "<?php echo $task['id']?>">
         <label for="">عنوان المهمه</label><br>
-        <input type="text" name="edit_task_title" value = "<?php echo $row['task_title']?>"><br>
+        <input type="text" name="edit_task_title" value = "<?php echo $task['task_title']?>"><br>
         <label for="">إسناد الى</label><br>
 
         <select name="edit_goes_to" >
-            <option value=""><?php echo $row['goes_to']?></option>
+            <option value="<?php echo $task['goes_to']?>" title="<?php echo $task['goes_to']?>"><?php echo $task['goes_to']?></option>
                <?php
                $host ='localhost';
                $user = 'root';
                $pass ='';
                $db = 'project1';
                $contect = mysqli_connect($host,$user,$pass,$db);
+               
 
                $reslt = mysqli_query($contect,"select * from `employee`");
                while ($row = mysqli_fetch_array($reslt)) {
@@ -105,18 +106,18 @@ rel="stylesheet">
                ?>
         </select> <br>
         <label for="">تاريخ انتهاء المهمه</label><br>
-        <input type="date" name="edit_time"><br>
+        <input type="date" name="edit_time" value="<?php echo $task['time'] ?>" placeholder="ادخل تاريخ الانتهاء" ><br>
 
         <label for="">حالة المهمه</label><br>
         <select name="edit_state"  >
-            <!-- <option value=""><?php echo $row['state']?></option> -->
+            <option value="<?php echo $task['state']?>" title = "<?php echo $task['state']?> "><?php echo $task['state']?></option>
             
             <option value="مكتمله">مكتمله</option>
             <option value="جاري العمل عليها">جاري العمل عليها</option>
             <option value="لم يتم البدء بها">لم يتم البدء بها</option>
             <option value="مرفوضه">مرفوضه</option>
         </select> <br> <br>
-        <a href="./emp_history.php" class="btn btn-danger">ألغاء</a>
+        <a href="./emp_all_tasks.php" class="btn btn-danger">ألغاء</a>
         <button type="submit" name ="update-task" class="btn2">تعديل</button><br><br>
         <?php
         

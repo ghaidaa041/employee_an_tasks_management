@@ -49,32 +49,30 @@ rel="stylesheet">
             </aside>
 
             <main>
-                <br>
+            <br>
                 <h2>مرحبا بك <?php
-                 $host ='localhost';
-                 $user = 'root';
-                 $pass ='';
-                 $db = 'project1';
-                 $contect = mysqli_connect($host,$user,$pass,$db);
-        
-
-
+                $host ='localhost';
+                $user = 'root';
+                $pass ='';
+                $db = 'project1';
+                $contect = mysqli_connect($host,$user,$pass,$db);
+                
+          
                 $emp_user_name = $_SESSION['username'];
                  $emp = mysqli_query($contect,"select emp_name from `employee` where emp_user_name = '$emp_user_name'");
 
                  $row1 = mysqli_fetch_array($emp);
                 
                 echo $row1[0];
-                
                 ?></h2>
-            <div class="continar2">
-            <div class="row row-cols-1 row-cols-md-3 g-2">
+                <div class="continar2">
+                    <div class="row row-cols-1 row-cols-md-3 g-2">
   
   <div class="col">
     <div class="card">
       <img src="./image/tasks.jpg" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">إجمالي المهام المسندة اليك</h5>
+        <h5 class="card-title">إجمالي المهام</h5>
         <?php 
         
         $host ='localhost';
@@ -83,6 +81,11 @@ rel="stylesheet">
         $db = 'project1';
         $contect = mysqli_connect($host,$user,$pass,$db);
         
+        $emp_user_name = $_SESSION['username'];
+        $emp = mysqli_query($contect,"select emp_name from `employee` where emp_user_name = '$emp_user_name'");
+
+        $row1 = mysqli_fetch_array($emp);
+
         
         $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' ");
         
@@ -109,14 +112,13 @@ rel="stylesheet">
         $db = 'project1';
         $contect = mysqli_connect($host,$user,$pass,$db);
         
-        
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' and state ='مكتمله'");
+        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='مكتمله' and goes_to = '$row1[0]' ");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";
         }
                 ?>
-        <a href="./emp_done_tasks.php" class="btn btn-info">قائمة مهامك المنتهيه </a>
+        <a href="./emp_done_tasks.php" class="btn btn-info">قائمة المهام المنتهيه</a>
       </div>
     </div>
   </div>
@@ -124,7 +126,7 @@ rel="stylesheet">
     <div class="card">
       <img src="./image/working.jpg" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title">مهام تعمل عليها</h5>
+        <h5 class="card-title">مهام جاري العمل عليها</h5>
         <?php 
         
         $host ='localhost';
@@ -134,21 +136,19 @@ rel="stylesheet">
         $contect = mysqli_connect($host,$user,$pass,$db);
         
         
-        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where goes_to = '$row1[0]' and state ='جاري العمل عليها'");
+        $reslt = mysqli_query($contect,"select count(*) as count from `tasks` where state ='جاري العمل عليها' and goes_to = '$row1[0]' ");
         
         while ($row = mysqli_fetch_assoc($reslt)) {
             echo "<h2>".$row['count']."</h2>";
         }
                 ?>
-        <a href="./emp_working_tasks.php" class="btn btn-info">قائمة المهام التي تعمل عليها </a>
+        <a href="./emp_working_tasks.php" class="btn btn-info">قائمة المهام التي يتم العمل عليها </a>
       </div>
     </div>
   </div>
 </div>
 
                 </div>
-           
-              
             </main>
         </form>
     </div>

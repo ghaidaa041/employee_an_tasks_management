@@ -7,6 +7,7 @@ $pass ='';
 $db = 'project1';
 $contect = mysqli_connect($host,$user,$pass,$db);
 
+
 $company_name=$_POST['company_name'];
 $admin_name=$_POST['admin_name'];
 $email=$_POST['email'];
@@ -20,7 +21,7 @@ if ($num == 0) {
     if (isset($_POST['add'])) {
         $register = "insert into `admin` value ('$company_name' , '$admin_name' , '$email' , '$user_name' , '$password')";
     mysqli_query($contect,$register);
-    header("location:auth.php");
+    header("location:./auth.php");
     }
 }else{
     echo "user name is token";

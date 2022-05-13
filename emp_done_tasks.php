@@ -61,11 +61,12 @@ rel="stylesheet">
   </thead>
   <tbody>
       <?php 
-       $host ='localhost';
-       $user = 'root';
-       $pass ='';
-       $db = 'project1';
-       $contect = mysqli_connect($host,$user,$pass,$db);
+      $host ='localhost';
+      $user = 'root';
+      $pass ='';
+      $db = 'project1';
+      $contect = mysqli_connect($host,$user,$pass,$db);
+      
 
        $emp_user_name = $_SESSION['username'];
                  

@@ -57,11 +57,12 @@ rel="stylesheet">
         <select name="goes_to" >
             <option>اختر موظف</option>
                <?php
-               $host ='localhost';
-               $user = 'root';
-               $pass ='';
-               $db = 'project1';
-               $contect = mysqli_connect($host,$user,$pass,$db);
+             $host ='localhost';
+             $user = 'root';
+             $pass ='';
+             $db = 'project1';
+             $contect = mysqli_connect($host,$user,$pass,$db);
+             
 
                $reslt = mysqli_query($contect,"select * from `employee`");
                while ($row = mysqli_fetch_array($reslt)) {

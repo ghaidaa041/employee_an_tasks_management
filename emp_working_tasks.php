@@ -68,6 +68,7 @@ rel="stylesheet">
        $pass ='';
        $db = 'project1';
        $contect = mysqli_connect($host,$user,$pass,$db);
+       
 
        $emp_user_name = $_SESSION['username'];
                  
